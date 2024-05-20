@@ -25,6 +25,14 @@ class Appointment
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $end_time = null;
 
+    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'appointments')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Patient $patient = null;
+
+    #[ORM\ManyToOne(targetEntity: Doctor::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Doctor $doctor = null;
+
     public function getId(): ?int
     {
         return $this->id;
