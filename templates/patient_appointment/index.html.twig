@@ -18,6 +18,10 @@
         <button type="submit" class="bg-blue-500 text-white p-2 rounded">Search</button>
     {{ form_end(form) }}
 
+    {% if message %}
+        <p class="text-red-500 mt-4">{{ message }}</p>
+    {% endif %}
+
     {% if appointments is not empty %}
         <h2 class="text-xl font-semibold mt-8">Appointments</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
