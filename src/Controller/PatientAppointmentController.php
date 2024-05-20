@@ -11,6 +11,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PatientAppointmentController extends AbstractController
 {
+
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+    
     #[Route('/patient/appointment', name: 'app_patient_appointment')]
     public function index(): Response
     {
