@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PatientAppointmentController!{% endblock %}
+{% block title %}Patient Appointments{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container mx-auto mt-8">
+    <h1 class="text-2xl font-bold mb-4">Search Appointments</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {{ form_start(form) }}
+        <div class="mb-4">
+            {{ form_label(form.search_type) }}
+            {{ form_widget(form.search_type) }}
+        </div>
+        <div class="mb-4">
+            {{ form_label(form.search_value) }}
+            {{ form_widget(form.search_value) }}
+        </div>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded">Search</button>
+    {{ form_end(form) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/shermes/Code/apps/medisearch/src/Controller/PatientAppointmentController.php</code></li>
-        <li>Your template at <code>/Users/shermes/Code/apps/medisearch/templates/patient_appointment/index.html.twig</code></li>
-    </ul>
+    {% if appointments is not empty %}
+        <h2 class="text-xl font-semibold mt-8">Appointments</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for appointment in appointments %}
+                <div class="bg-white p-4 rounded shadow">
+                    <p>Doctor: {{ appointment.getDoctor().getName() }}</p>
+                    <p>Date: {{ appointment.getDate()|date('Y-m-d') }}</p>
+                    <p>Start Time: {{ appointment.getStartTime()|date('H:i') }}</p>
+                    <p>End Time: {{ appointment.getEndTime()|date('H:i') }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
