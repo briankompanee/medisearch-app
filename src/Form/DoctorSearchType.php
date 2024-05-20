@@ -12,9 +12,9 @@ class DoctorSearchType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('doctor_name', TextType::class, [
-          'label' => 'Doctor Name',
-          'required' => true,
-      ]);
+    ->add('doctor_name', TextType::class, [
+      'label' => 'Doctor Name',
+      'required' => true,
+    ]);
   }
 }

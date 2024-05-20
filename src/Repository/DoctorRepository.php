@@ -11,33 +11,33 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DoctorRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Doctor::class);
-    }
+  public function __construct(ManagerRegistry $registry)
+  {
+    parent::__construct($registry, Doctor::class);
+  }
 
-    //    /**
-    //     * @return Doctor[] Returns an array of Doctor objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('d')
-    //            ->andWhere('d.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('d.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+  //    /**
+  //     * @return Doctor[] Returns an array of Doctor objects
+  //     */
+  //    public function findByExampleField($value): array
+  //    {
+  //        return $this->createQueryBuilder('d')
+  //            ->andWhere('d.exampleField = :val')
+  //            ->setParameter('val', $value)
+  //            ->orderBy('d.id', 'ASC')
+  //            ->setMaxResults(10)
+  //            ->getQuery()
+  //            ->getResult()
+  //        ;
+  //    }
 
-    //    public function findOneBySomeField($value): ?Doctor
-    //    {
-    //        return $this->createQueryBuilder('d')
-    //            ->andWhere('d.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+  //    public function findOneBySomeField($value): ?Doctor
+  //    {
+  //        return $this->createQueryBuilder('d')
+  //            ->andWhere('d.exampleField = :val')
+  //            ->setParameter('val', $value)
+  //            ->getQuery()
+  //            ->getOneOrNullResult()
+  //        ;
+  //    } 
 }

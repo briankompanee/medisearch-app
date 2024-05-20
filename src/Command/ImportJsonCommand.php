@@ -101,9 +101,9 @@ class ImportJsonCommand extends Command
       $this->entityManager->persist($appointment);
     }
 
-  $this->entityManager->flush();
+    $this->entityManager->flush();
 
-  $output->writeln("JSON data from $filePath imported successfully.");
+    $output->writeln("JSON data from $filePath imported successfully.");
   }
 
 }

@@ -13,23 +13,23 @@ class PatientSearchType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('search_type', ChoiceType::class, [
-          'choices' => [
-              'Name' => 'name',
-              'Email' => 'email',
-          ],
-          'placeholder' => 'Select a search type',
-          'required' => true,
-      ])
-      ->add('search_value', TextType::class, [
-          'required' => true,
-      ]);
+    ->add('search_type', ChoiceType::class, [
+      'choices' => [
+          'Name' => 'name',
+          'Email' => 'email',
+      ],
+      'placeholder' => 'Select a search type',
+      'required' => true,
+    ])
+    ->add('search_value', TextType::class, [
+      'required' => true,
+    ]);
   }
 
   public function configureOptions(OptionsResolver $resolver): void
   {
     $resolver->setDefaults([
-        'csrf_protection' => true,
+      'csrf_protection' => true,
     ]);
   }
 }
