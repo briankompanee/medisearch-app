@@ -74,4 +74,12 @@ class Patient
 
         return $this;
     }
+    /**
+     * @return Collection<int, Appointment>
+     */
+    public function getAppointments(): Collection
+    {
+        return $this->appointments;
+    }
+
 }
