@@ -65,35 +65,45 @@ class ImportJsonCommand extends Command
     }
     
     private function importAppointments(string $filePath, OutputInterface $output)
-    {
-        if (!file_exists($filePath)) {
-            $output->writeln("File not found: $filePath");
-            return;
-        }
+  {
+      if (!file_exists($filePath)) {
+          $output->writeln("File not found: $filePath");
+          return;
+      }
 
-        $jsonData = file_get_contents($filePath);
-        $data = json_decode($jsonData, true); // Decode JSON data into an associative array
+      $jsonData = file_get_contents($filePath);
+      $data = json_decode($jsonData, true); // Decode JSON data into an associative array
 
-        foreach ($data as $item) {
-            $appointment = new Appointment();
-            $appointment->setDoctorId($item['doctor_id']);
-            $appointment->setDate(new \DateTime($item['date']));
-            $appointment->setStartTime(new \DateTime($item['start_time']));
-            $appointment->setEndTime(new \DateTime($item['end_time']));
+      foreach ($data as $item) {
+          $appointment = new Appointment();
+          $appointment->setDate(new \DateTime($item['date']));
+          $appointment->setStartTime(new \DateTime($item['start_time']));
+          $appointment->setEndTime(new \DateTime($item['end_time']));
 
-            // Find the patient by ID and set it in the appointment
-            $patient = $this->entityManager->getRepository(Patient::class)->find($item['patient_id']);
-            if ($patient) {
-                $appointment->setPatient($patient);
-            } else {
-                $output->writeln('Patient not found for ID: ' . $item['patient_id']);
-            }
+          // Find the patient by ID and set it in the appointment
+          $patient = $this->entityManager->getRepository(Patient::class)->find($item['patient_id']);
+          if ($patient) {
+              $appointment->setPatient($patient);
+          } else {
+              $output->writeln('Patient not found for ID: ' . $item['patient_id']);
+              continue; // Skip this appointment if the patient is not found
+          }
 
-            $this->entityManager->persist($appointment);
-        }
+          // Find the doctor by ID and set it in the appointment
+          $doctor = $this->entityManager->getRepository(Doctor::class)->find($item['doctor_id']);
+          if ($doctor) {
+              $appointment->setDoctor($doctor);
+          } else {
+              $output->writeln('Doctor not found for ID: ' . $item['doctor_id']);
+              continue; // Skip this appointment if the doctor is not found
+          }
 
-        $this->entityManager->flush();
+          $this->entityManager->persist($appointment);
+      }
 
-        $output->writeln("JSON data from $filePath imported successfully.");
-    }
+      $this->entityManager->flush();
+
+      $output->writeln("JSON data from $filePath imported successfully.");
+  }
+
 }
