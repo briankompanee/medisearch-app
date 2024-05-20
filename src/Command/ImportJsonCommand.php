@@ -29,4 +29,15 @@ class ImportJsonCommand extends Command
         $this->setName('app:import-json')
             ->setDescription('Import JSON data into the database');
     }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $this->importJsonData('data/Patient.json', Patient::class, $output);
+        $this->importJsonData('data/Doctor.json', Doctor::class, $output);
+        $this->importAppointments('data/Appointment.json', $output);
+
+        $output->writeln('All JSON data imported successfully.');
+
+        return Command::SUCCESS;
+    }
 }
