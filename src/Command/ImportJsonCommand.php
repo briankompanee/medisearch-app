@@ -63,4 +63,37 @@ class ImportJsonCommand extends Command
 
         $output->writeln("JSON data from $filePath imported successfully.");
     }
+    
+    private function importAppointments(string $filePath, OutputInterface $output)
+    {
+        if (!file_exists($filePath)) {
+            $output->writeln("File not found: $filePath");
+            return;
+        }
+
+        $jsonData = file_get_contents($filePath);
+        $data = json_decode($jsonData, true); // Decode JSON data into an associative array
+
+        foreach ($data as $item) {
+            $appointment = new Appointment();
+            $appointment->setDoctorId($item['doctor_id']);
+            $appointment->setDate(new \DateTime($item['date']));
+            $appointment->setStartTime(new \DateTime($item['start_time']));
+            $appointment->setEndTime(new \DateTime($item['end_time']));
+
+            // Find the patient by ID and set it in the appointment
+            $patient = $this->entityManager->getRepository(Patient::class)->find($item['patient_id']);
+            if ($patient) {
+                $appointment->setPatient($patient);
+            } else {
+                $output->writeln('Patient not found for ID: ' . $item['patient_id']);
+            }
+
+            $this->entityManager->persist($appointment);
+        }
+
+        $this->entityManager->flush();
+
+        $output->writeln("JSON data from $filePath imported successfully.");
+    }
 }
