@@ -40,4 +40,27 @@ class ImportJsonCommand extends Command
 
         return Command::SUCCESS;
     }
+
+    private function importJsonData(string $filePath, string $entityClass, OutputInterface $output)
+    {
+        if (!file_exists($filePath)) {
+            $output->writeln("File not found: $filePath");
+            return;
+        }
+
+        $jsonData = file_get_contents($filePath);
+        $data = json_decode($jsonData, true); // Decode JSON data into an associative array
+
+        foreach ($data as $item) {
+            // Deserialize JSON data into the specified entity class
+            $entity = $this->serializer->deserialize(json_encode($item), $entityClass, 'json');
+            
+            // Persist the entity
+            $this->entityManager->persist($entity);
+        }
+
+        $this->entityManager->flush();
+
+        $output->writeln("JSON data from $filePath imported successfully.");
+    }
 }
