@@ -43,8 +43,13 @@ php bin/console doctrine:migrations:migrate
     symfony server:start
     ```
 
-    The application will be accessible at `http://localhost:8000`.
 
+8. Compile the assets with Webpack buy running: 
+```shell
+	npm run dev  
+```
+
+    The application will be accessible at `http://localhost:8000`.
 #### Key Functionalities
 
 1. **Doctor Management API**
