@@ -23,4 +23,10 @@ class ImportJsonCommand extends Command
         $this->entityManager = $entityManager;
         $this->serializer = $serializer;
     }
+
+    protected function configure()
+    {
+        $this->setName('app:import-json')
+            ->setDescription('Import JSON data into the database');
+    }
 }
