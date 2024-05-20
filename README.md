@@ -1,3 +1,5 @@
+# MediSearch App
+
 MediSearch is a Symfony-based application designed to search doctors, patients and their corresponding appointments. This application allows users to search for doctors, appointments, and check doctor availability.
 #### Setting Up the Development Environment
 
@@ -113,3 +115,11 @@ Make sure to configure your test environment in `.env.test` if necessary.
 - [Symfony Documentation](https://symfony.com/doc/current/index.html)
 - [API Platform Documentation](https://api-platform.com/docs/)
 - [Mockaroo Documentation](https://mockaroo.com/docs)
+
+### Further Development Ideas and Thoughts
+
+- Create a MediSearch home page with navigation to all links
+- Create Tests for all of the Controllers
+- Create Forms for adding or updating Data in the Tables
+- Add more appealing styling to the front end
+- Add a Patient or Doctor Login with personalized dashboards
