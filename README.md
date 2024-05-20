@@ -32,21 +32,23 @@ php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
 ```
 
-6. Run the JSON Importer tool to populate the `medisearch` db with the `patient`, `doctor`, and `appointment` tables 
+6.**Run Custom Data Importer Tool** 
+  Run the JSON Importer tool to populate the `medisearch` db with the `patient`, `doctor`, and `appointment` tables 
 ```shell
-   php bin/console app:import-json`
+php bin/console app:import-json`
 ```
 
 7. **Run the Development Server**
     Start the Symfony local server:
-    ```sh
-    symfony server:start
-    ```
-
-
-8. Compile the assets with Webpack buy running: 
 ```shell
-	npm run dev  
+symfony server:start
+```
+
+
+8. **Compile the Assets**
+  Compile the assets with Webpack buy running: 
+```shell
+npm run dev  
 ```
 
     The application will be accessible at `http://localhost:8000`.
@@ -128,3 +130,4 @@ Make sure to configure your test environment in `.env.test` if necessary.
 - Create Forms for adding or updating Data in the Tables
 - Add more appealing styling to the front end
 - Add a Patient or Doctor Login with personalized dashboards
+- Fix Spacing to 2 spaces in code (my editor was set for 4 for a previous project and it got a little wild with spaces)
