@@ -52,6 +52,15 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = '3.23';
     })
+    // enables PostCSS support and tailwind
+    .enablePostCssLoader((options) => {
+        options.postcssOptions = {
+            plugins: {
+                tailwindcss: {},
+                autoprefixer: {}
+            }
+        };
+    })
 
     // enables Sass/SCSS support
     //.enableSassLoader()
