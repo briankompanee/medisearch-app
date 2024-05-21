@@ -32,10 +32,10 @@ php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
 ```
 
-6.**Run Custom Data Importer Tool** 
+6. **Run Custom Data Importer Tool** 
   Run the JSON Importer tool to populate the `medisearch` db with the `patient`, `doctor`, and `appointment` tables 
 ```shell
-php bin/console app:import-json`
+php bin/console app:import-json
 ```
 
 7. **Run the Development Server**
@@ -51,7 +51,8 @@ symfony server:start
 npm run dev  
 ```
 
-    The application will be accessible at `http://localhost:8000`.
+The application will be accessible at `http://localhost:8000`.
+
 #### Key Functionalities
 
 1. **Doctor Management API**
@@ -69,10 +70,12 @@ npm run dev
 5. Patient Appointments
 	- Search patient appointments by name or email
 	- Returns a list of all doctor appointments for the patient
-	
+    - http://localhost:8000/patient/appointment
+
 6. **Doctor Availability**
     - Check the availability of doctors
     - Integration with Mockaroo API for mock data
+    - http://localhost:8000/doctor/availability
 
 ####  Mockaroo Schema
 
